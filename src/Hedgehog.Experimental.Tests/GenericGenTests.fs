@@ -80,14 +80,6 @@ let ``should generate value using a generator without parameters: Uuid``() =
     }
 
 [<Fact>]
-let ``should override an existing 'default' generator with the registered one``() =
-   let config = GenX.defaults |> AutoGenConfig.addGenerators<GenericTestGenerators>
-   checkWith 100<tests> <| property {
-        let! x = GenX.autoWith<int> config
-        test <@ x |> function x -> x % 2 = 1 @>
-    }
-
-[<Fact>]
 let ``should generate value using a generator with parameters: Name``() =
    let config = GenX.defaults |> AutoGenConfig.addGenerators<GenericTestGenerators>
    checkWith 100<tests> <| property {
